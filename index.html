@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>广东省新型冠状病毒感染疫情地图(2020)</title>
+  <!-- 引入 echarts.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.6.0/echarts.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+</head>
+
+<body>
+  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+  <div id="main" style="width: 600px;height:400px;"></div>
+  <script type="text/javascript">
+    var uploadedDataURL = "./data-1478257028861-Hk6YF19el.json";
+
+    $.get(uploadedDataURL, function (geoJson) {
+
+      myChart.hideLoading();
+
+      echarts.registerMap('GD', geoJson);
+
+      option = {
+        title: {
+          text: '广东省新型冠状病毒感染疫情地图(2020)',
+          subtext: '人口密度数据来自丁香园',
+          sublink: 'https://3g.dxy.cn/newh5/view/pneumonia_peopleapp?from=timeline&isappinstalled=0'
+        },
+        "tooltip": {
+          "trigger": "item"
+        },
+        "toolbox": {
+          "show": true,
+          "orient": 'vertical',
+          "left": 'right',
+          "top": 'center',
+          "feature": {
+            "dataView": {
+              "readOnly": false
+            },
+            "restore": {},
+            "saveAsImage": {}
+          }
+        },
+        visualMap: {
+          min: 1,
+          max: 20,
+          text: ['High', 'Low'],
+          realtime: false,
+          calculable: true,
+          inRange: {
+            color: ['yellow', 'orangered', 'purple']
+          }
+        },
+        "series": [{
+          "name": "确诊人数",
+          "type": "map",
+          "mapType": "GD",
+          "data": [{
+            "name": "深圳市",
+            "value": 20
+          },
+          {
+            "name": "广州市",
+            "value": 14
+          },
+          {
+            "name": "珠海市",
+            "value": 10
+          },
+          {
+            "name": "佛山市",
+            "value": 9
+          },
+          {
+            "name": "惠州市",
+            "value": 7
+          },
+          {
+            "name": "阳江市",
+            "value": 5
+          },
+          {
+            "name": "韶关市",
+            "value": 3
+          },
+          {
+            "name": "湛江市",
+            "value": 2
+          },
+          {
+            "name": "中山市",
+            "value": 2
+          },
+          {
+            "name": "肇庆市",
+            "value": 2
+          },
+          {
+            "name": "清远市",
+            "value": 2
+          },
+          {
+            "name": "东莞市",
+            "value": 1
+          },
+          {
+            "name": "汕头市",
+            "value": 1
+          }
+          ],
+          "label": {
+            "normal": {
+              "formatter": "{b}",
+              "position": "right",
+              "show": true
+            },
+            "emphasis": {
+              "show": true
+            }
+          },
+          nameMap: {}
+        }]
+      };
+      myChart.setOption(option);
+    });
+  </script>
+</body>
+
+</html>
