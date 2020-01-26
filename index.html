@@ -13,6 +13,7 @@
   <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
   <div id="main" style="width: 600px;height:400px;"></div>
   <script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('main'));
     var uploadedDataURL = "./data-1478257028861-Hk6YF19el.json";
 
     $.get(uploadedDataURL, function (geoJson) {
